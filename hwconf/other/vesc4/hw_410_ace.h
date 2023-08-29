@@ -29,13 +29,16 @@
 #define HW_HAS_PHASE_FILTERS    // The Hardware is able to turn filters on/off per signal
 
 // Macros
-#define LED_GREEN_ON() palSetPad(GPIOB, 0)     // unset in schem. LED not connected to anything
-#define LED_GREEN_OFF() palClearPad(GPIOB, 0)  // unset in schem
-#define LED_RED_ON() palSetPad(GPIOB, 1)       // unset in schem
-#define LED_RED_OFF() palClearPad(GPIOB, 1)    // unset in schem
+#define LED_GREEN_ON()     // unset in schem. LED not connected to anything
+#define LED_GREEN_OFF()  // unset in schem
+#define LED_RED_ON()       // unset in schem
+#define LED_RED_OFF()    // unset in schem
 
 #define ENABLE_GATE()			palSetPad(GPIOB, 5)    // Aaron: maybe have to remove this, because it is connected to OCPn circuit
 #define DISABLE_GATE()			palClearPad(GPIOB, 5)
+
+#define PHASE_FILTER_GPIO		GPIOC
+#define PHASE_FILTER_PIN		9
 
 #define PHASE_FILTER_ON()		palSetPad(GPIOC, 9)
 #define PHASE_FILTER_OFF()		palClearPad(GPIOC, 9)
@@ -122,6 +125,44 @@
 #define HW_ADC_EXT2_GPIO		GPIOA
 #define HW_ADC_EXT2_PIN			6
 
+// ICU Peripheral for servo decoding
+#define HW_USE_SERVO_TIM4
+#define HW_ICU_TIMER			TIM4
+#define HW_ICU_TIM_CLK_EN()		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE)
+#define HW_ICU_DEV				ICUD4
+#define HW_ICU_CHANNEL			ICU_CHANNEL_1
+#define HW_ICU_GPIO_AF			GPIO_AF_TIM4
+#define HW_ICU_GPIO				GPIOB
+#define HW_ICU_PIN				6
+
+// I2C Peripheral
+#define HW_I2C_DEV				I2CD2
+#define HW_I2C_GPIO_AF			GPIO_AF_I2C2
+#define HW_I2C_SCL_PORT			GPIOB
+#define HW_I2C_SCL_PIN			10
+#define HW_I2C_SDA_PORT			GPIOB
+#define HW_I2C_SDA_PIN			11
+
+// SPI pins
+#define HW_SPI_DEV				SPID1
+#define HW_SPI_GPIO_AF			GPIO_AF_SPI1
+#define HW_SPI_PORT_NSS			GPIOA
+#define HW_SPI_PIN_NSS			4
+#define HW_SPI_PORT_SCK			GPIOA
+#define HW_SPI_PIN_SCK			5
+#define HW_SPI_PORT_MOSI		GPIOA
+#define HW_SPI_PIN_MOSI			7
+#define HW_SPI_PORT_MISO		GPIOA
+#define HW_SPI_PIN_MISO			6
+
+// UART Peripheral
+#define HW_UART_DEV				SD3
+#define HW_UART_GPIO_AF			GPIO_AF_USART3
+#define HW_UART_TX_PORT			GPIOB
+#define HW_UART_TX_PIN			10
+#define HW_UART_RX_PORT			GPIOB
+#define HW_UART_RX_PIN			11
+
 // Hall/encoder pins
 #define HW_HALL_ENC_GPIO1		GPIOC
 #define HW_HALL_ENC_PIN1		6
@@ -193,4 +234,4 @@
 // HW-specific functions
 float hw_ace_get_temp(void);
 
-#endif HW_aCe_H_
+#endif // HW_aCe_H_

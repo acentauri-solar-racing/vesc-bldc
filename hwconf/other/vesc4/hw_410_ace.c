@@ -38,14 +38,6 @@ void hw_init_gpio(void) {
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
     RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
-    // LEDs
-    palSetPadMode(LED_GREEN_GPIO, LED_GREEN_PIN,
-                  PAL_MODE_OUTPUT_PUSHPULL |
-                  PAL_STM32_OSPEED_HIGHEST);
-    palSetPadMode(LED_RED_GPIO, LED_RED_PIN,
-                  PAL_MODE_OUTPUT_PUSHPULL |
-                  PAL_STM32_OSPEED_HIGHEST);
-
     // GPIOA Configuration: Channel 1 to 3 as alternate function push-pull
     palSetPadMode(GPIOA, 8, PAL_MODE_ALTERNATE(GPIO_AF_TIM1) |
                             PAL_STM32_OSPEED_HIGHEST |

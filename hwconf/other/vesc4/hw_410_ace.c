@@ -22,14 +22,14 @@
 #include "stm32f4xx_conf.h"
 
 //// Variables
-//static volatile bool i2c_running = false; // Aaron: Can I delete this?
+static volatile bool i2c_running = false; // Aaron: Can I delete this?
 //
 //// I2C configuration
-//static const I2CConfig i2cfg = { // Aaron: Can I delete this?
-//		OPMODE_I2C,
-//		100000,
-//		STD_DUTY_CYCLE
-//};
+static const I2CConfig i2cfg = { // Aaron: Can I delete this?
+		OPMODE_I2C,
+		100000,
+		STD_DUTY_CYCLE
+};
 
 void hw_init_gpio(void) {
     // GPIO clock enable
@@ -105,7 +105,7 @@ void hw_setup_adc_channels(void) {
     ADC_RegularChannelConfig(ADC2, ADC_Channel_11, 1, ADC_SampleTime_15Cycles);
     ADC_RegularChannelConfig(ADC2, ADC_Channel_1, 2, ADC_SampleTime_15Cycles);
     ADC_RegularChannelConfig(ADC2, ADC_Channel_6, 3, ADC_SampleTime_15Cycles);
-    ADC_RegularChannelConfig(ADC2, ADC_Channel_13, 4, ADC_SampleTime_15Cycles)
+    ADC_RegularChannelConfig(ADC2, ADC_Channel_13, 4, ADC_SampleTime_15Cycles);
 
     // ADC3 regular channels
     ADC_RegularChannelConfig(ADC3, ADC_Channel_12, 1, ADC_SampleTime_15Cycles);
@@ -217,8 +217,4 @@ void hw_try_restore_i2c(void) {
 
         i2cReleaseBus(&HW_I2C_DEV);
     }
-}
-
-float hw_ace_get_temp(void) {
-    return (ADC_VOLTS[ADC_IND_TEMP] / 7870 * 1000000 - 273.15);
 }

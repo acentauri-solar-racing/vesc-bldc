@@ -76,7 +76,8 @@
 #define ADC_IND_SENS3			5
 #define ADC_IND_EXT				6
 #define ADC_IND_EXT2			7
-#define ADC_IND_TEMP    		8
+#define ADC_IND_TEMP_MOTOR		8
+#define ADC_IND_TEMP_MOS		8
 #define ADC_IND_VIN_SENS		9
 #define ADC_IND_VREFINT			10
 
@@ -105,7 +106,16 @@
 // Voltage on ADC channel
 #define ADC_VOLTS(ch)			((float)ADC_Value[ch] / 4096.0 * V_REG)
 
-#define NTC_TEMP()  			(ADC_VOLTS[ADC_IND_TEMP] / 7870 * 1000000 - 273.15)
+#define NTC_RES(adc_val)		((4095.0 * 10000.0) / adc_val - 10000.0)
+#define NTC_TEMP(adc_ind)  		(NTC_RES(adc_ind) / 7870 * 1000000 - 273.15)
+
+#define NTC_RES_MOTOR(adc_val)	0.0
+#define NTC_TEMP_MOTOR(beta)	0.0
+
+#define NTC_TEMP_MOS1()			0.0
+#define NTC_TEMP_MOS2()			0.0
+#define NTC_TEMP_MOS3()			0.0
+
 
 // Double samples in beginning and end for positive current measurement.
 // Useful when the shunt sense traces have noise that causes offset.
@@ -231,7 +241,5 @@
 #define HW_LIM_DUTY_MAX			0.0, 0.99
 #define HW_LIM_TEMP_FET			-55.0, 90.0
 
-// HW-specific functions
-float hw_ace_get_temp(void);
 
 #endif // HW_aCe_H_

@@ -94,7 +94,7 @@
 #define VIN_R2					4700.0
 #endif
 #ifndef CURRENT_AMP_GAIN
-#define CURRENT_AMP_GAIN		148.5
+#define CURRENT_AMP_GAIN		66
 #endif
 #ifndef CURRENT_SHUNT_RES
 #define CURRENT_SHUNT_RES		0.0001
@@ -233,10 +233,10 @@
 
 // Setting limits
 #define HW_LIM_CURRENT			-200.0, 200.0
-#define HW_LIM_CURRENT_IN		-20.0, 100.0
+#define HW_LIM_CURRENT_IN		-30.0, 100.0
 #define HW_LIM_CURRENT_ABS		0.0, 200.0
-#define HW_LIM_VIN				60.0, 147.0
-#define HW_LIM_ERPM				-2, 7.5
+#define HW_LIM_VIN				30.0, 175.0
+#define HW_LIM_ERPM				-50000, 50000
 #define HW_LIM_DUTY_MIN			0.0, 0.1
 #define HW_LIM_DUTY_MAX			0.0, 0.99
 #define HW_LIM_TEMP_FET			-55.0, 90.0
